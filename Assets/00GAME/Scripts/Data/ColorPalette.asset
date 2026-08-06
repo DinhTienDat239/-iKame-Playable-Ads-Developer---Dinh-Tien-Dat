@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699de19b2fe7b954fba2df72c37f6599, type: 3}
+  m_Name: ColorPalette
+  m_EditorClassIdentifier: 
+  entries:
+  - color: 0
+    carMaterial: {fileID: 2100000, guid: d47f05cb26998f8479318aa3f0e1f43f, type: 2}
+    humanMaterial: {fileID: 0}
+  - color: 1
+    carMaterial: {fileID: 2100000, guid: a3856893c445733489319e59a30202f4, type: 2}
+    humanMaterial: {fileID: 0}
+  - color: 2
+    carMaterial: {fileID: 2100000, guid: 3239ce3738af9804b912aa33d63d6c01, type: 2}
+    humanMaterial: {fileID: 0}
+  - color: 3
+    carMaterial: {fileID: 2100000, guid: 71be21522f69059428a5960a24e1a1be, type: 2}
+    humanMaterial: {fileID: 0}
+  - color: 4
+    carMaterial: {fileID: 2100000, guid: ac73baa66dfe1074ab0e9e2681cd7558, type: 2}
+    humanMaterial: {fileID: 0}
+  - color: 5
+    carMaterial: {fileID: 2100000, guid: b03eeb98b2e7b8043b50777462f4fcf3, type: 2}
+    humanMaterial: {fileID: 0}

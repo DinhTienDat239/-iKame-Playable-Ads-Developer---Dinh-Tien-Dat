@@ -25,31 +25,33 @@ public class ParkingSlotManager : MonoBehaviour
             return false;
         }
 
-        // Xe dang do o parking: lui ra path -> GoForGuest -> ve lai slot
+        GameManager gameManager = GameManager.Instance;
+        if (gameManager == null || !gameManager.CanStartMoving())
+        {
+            return false;
+        }
+
+        // Xe dang do o parking: giai phong slot -> GoForGuest -> tim slot trong sau
         if (car.isParked)
         {
+            car.ReleaseParkingSlot();
+            gameManager.RegisterMovingCar();
             car.GoFromParking(parkingPath);
             return true;
         }
 
-        // Xe hang dau: vao parking lan dau
+        // Xe hang dau: khong can slot trong luc xuat phat
         if (!car.isFirstLine)
         {
             return false;
         }
 
-        ParkingSlotController freeSlot = GetFreeSlot();
-        if (freeSlot == null)
-        {
-            return false;
-        }
+        gameManager.RegisterMovingCar();
+        car.GoInLine(null, parkingPath);
 
-        freeSlot.isParked = true;
-        car.GoInLine(freeSlot, parkingPath);
-
-        if (GameManager.Instance != null && GameManager.Instance.carLineManager != null)
+        if (gameManager.carLineManager != null)
         {
-            GameManager.Instance.carLineManager.NotifyCarDeparted(car);
+            gameManager.carLineManager.NotifyCarDeparted(car);
         }
 
         return true;

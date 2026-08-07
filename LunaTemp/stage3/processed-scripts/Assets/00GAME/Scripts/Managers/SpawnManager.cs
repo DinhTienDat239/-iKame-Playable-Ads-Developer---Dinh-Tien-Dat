@@ -211,8 +211,10 @@ public class SpawnManager : MonoBehaviour
                     {
                         guest.guestColor = order.color;
                         guest.Init();
+                        spawnPos.RegisterGuest(guest);
                     }
 
+                    spawnPos.UpdateGuestLeftDisplay();
                     guestIndex = guestIndex + 1;
                 }
             }
@@ -230,6 +232,41 @@ public class SpawnManager : MonoBehaviour
         {
             Destroy(guestParent.GetChild(i).gameObject);
         }
+    }
+
+    public void ResetGuestTriggersForCar(CarController car)
+    {
+        if (car == null || guestSpawnPositions == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < guestSpawnPositions.Length; i++)
+        {
+            if (guestSpawnPositions[i] != null)
+            {
+                guestSpawnPositions[i].ResetCarTrigger(car);
+            }
+        }
+    }
+
+    public bool AreAllGuestSpawnPosEmpty()
+    {
+        if (guestSpawnPositions == null)
+        {
+            return true;
+        }
+
+        for (int i = 0; i < guestSpawnPositions.Length; i++)
+        {
+            GuestSpawnPos spawnPos = guestSpawnPositions[i];
+            if (spawnPos != null && spawnPos.HasGuests())
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     // ========================= CAR HELPERS =========================
@@ -325,6 +362,16 @@ public class SpawnManager : MonoBehaviour
     }
 
     // ========================= GUEST HELPERS =========================
+
+    public Vector3 GetGuestQueueLocalOffset(Enums.GuestQueueType queueType, int index)
+    {
+        return GetGuestLocalOffset(queueType, index);
+    }
+
+    public Quaternion GetGuestQueueRotation(GuestSpawnPos spawnPos, Enums.GuestQueueType queueType)
+    {
+        return GetGuestRotation(spawnPos, queueType);
+    }
 
     private GuestColorSpawnData[] GetGuestColors(int posIndex)
     {

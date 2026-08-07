@@ -214,6 +214,7 @@ public class SpawnManager : MonoBehaviour
                         spawnPos.RegisterGuest(guest);
                     }
 
+                    spawnPos.UpdateGuestLeftDisplay();
                     guestIndex = guestIndex + 1;
                 }
             }
@@ -247,6 +248,25 @@ public class SpawnManager : MonoBehaviour
                 guestSpawnPositions[i].ResetCarTrigger(car);
             }
         }
+    }
+
+    public bool AreAllGuestSpawnPosEmpty()
+    {
+        if (guestSpawnPositions == null)
+        {
+            return true;
+        }
+
+        for (int i = 0; i < guestSpawnPositions.Length; i++)
+        {
+            GuestSpawnPos spawnPos = guestSpawnPositions[i];
+            if (spawnPos != null && spawnPos.HasGuests())
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     // ========================= CAR HELPERS =========================

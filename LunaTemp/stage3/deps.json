@@ -10,25 +10,28 @@
   "groups": [
     [
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/CarController.cs",
-      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/PlayerInteraction.cs",
-      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Managers/ParkingSlotManager.cs",
-      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Managers/GameManager.cs",
-      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/GuestController.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/GuestSpawnPos.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Managers/SpawnManager.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Managers/CarLineManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Managers/GameManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/GuestController.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Static/Enums.cs",
-      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/GuestSpawnPos.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Data/CarSpawnData.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Data/ColorPalette.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Data/GuestColorSpawnData.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/PlayerInteraction.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Managers/ParkingSlotManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/ParkingSlotController.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/DesignPatterns/Singleton.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/Optimization/SCU/SCUManager.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/System/AudioManager.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/System/ResponsiveManager.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/System/SEPManager.cs",
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/System/TutorialManager.cs",
-      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Path/GuestPath.cs",
-      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/ParkingSlotController.cs"
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Path/GuestPath.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Managers/VFXManager.cs"
     ],
     [
       "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Analytics/AxonTracking.cs"

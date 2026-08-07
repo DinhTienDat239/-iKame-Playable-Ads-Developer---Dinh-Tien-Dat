@@ -579,9 +579,43 @@ MonoBehaviour:
     upToDate: 0
     keywords:
       "\L\u2025": []
+  - shaderCompilerPlatform: 5
+    shader: {fileID: -6465566751694194690, guid: a6e3bfd3e70151746a6e3ff55ebad8d1, type: 3}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025": []
+  - shaderCompilerPlatform: 9
+    shader: {fileID: -6465566751694194690, guid: a6e3bfd3e70151746a6e3ff55ebad8d1, type: 3}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025": []
+  - shaderCompilerPlatform: 5
+    shader: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - OUTLINE_ON
+  - shaderCompilerPlatform: 9
+    shader: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - OUTLINE_ON
   _includedShaderVariants: []
   _excludedShaderVariants: []
-  version: 83
+  version: 238
   _shaderParsedShaders:
   - ParsedSubShaders:
     - Index: 0

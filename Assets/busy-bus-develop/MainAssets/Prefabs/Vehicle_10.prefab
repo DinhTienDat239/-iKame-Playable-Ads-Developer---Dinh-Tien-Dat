@@ -54741,12 +54741,25 @@ MonoBehaviour:
   isParked: 0
   moveSpeed: 18
   guestPickupSpeed: 2
-  speedTransitionDuration: 0.2
+  speedTransitionDuration: 0.125
   rotateSpeed: 12
   pathLookAhead: 0.08
   parkRotationY: -150
   parkApproachDistance: 2
   exitOffsetX: -10
+  fullExitSpeedMultiplier: 1.65
+  boostBodyTiltX: -10
+  boostBodyTiltDuration: 0.15
+  parkBrakeTiltX: 10
+  parkBrakeTiltInDuration: 0.12
+  parkBrakeTiltOutDuration: 0.28
+  turnSwayMaxZ: 7
+  turnSwayFactor: 0.09
+  turnSwayReturnSpeed: 10
+  collisionCheckDistance: 3
+  hoodCloseDuration: 0.3
+  hoodClosedStartScale: {x: 0.05, y: 0.05, z: 0.05}
+  hoodCloseDropOffset: 0.5
   seatTransforms:
   - {fileID: 6182307803694958461}
   - {fileID: 5927066550958602362}
@@ -54760,8 +54773,12 @@ MonoBehaviour:
   - {fileID: 824057903720800566}
   carBodyMeshRenderer: {fileID: 4840050732575883366}
   carHoodMeshRenderer: {fileID: 4755888421444919010}
+  carBody: {fileID: 8079216423721646631}
   isMoving: 0
   currentPassengerCount: 0
+  _isBlockedByAhead: 0
+  _isReversing: 0
+  isOutOfCarLine: 0
 --- !u!65 &1473101869034273025
 BoxCollider:
   m_ObjectHideFlags: 0

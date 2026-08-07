@@ -5,6 +5,7 @@ public class GameManager : Singleton<GameManager>
 {
     [Header("Gameplay")]
     [SerializeField] public float guestPickupInterval = 0.2f;
+    [SerializeField] public int movingCarLimit = 3;
 
     [Header("References")]
     [SerializeField] public ColorPalette colorPalette;
@@ -14,6 +15,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] public CarLineManager carLineManager;
 
     public int carDone;
+    public int movingCarCount;
+    public bool isWin;
+    public bool isLose;
 
     private void Start()
     {
@@ -23,11 +27,60 @@ public class GameManager : Singleton<GameManager>
     public void Init()
     {
         carDone = 0;
+        movingCarCount = 0;
+        isWin = false;
+        isLose = false;
         if (spawnManager != null)
         {
             spawnManager.SpawnCars();
             spawnManager.SpawnGuests();
         }
+    }
+
+    public bool CanStartMoving()
+    {
+        if (isWin || isLose)
+        {
+            return false;
+        }
+
+        return movingCarCount < movingCarLimit;
+    }
+
+    public void RegisterMovingCar()
+    {
+        movingCarCount = movingCarCount + 1;
+    }
+
+    public void UnregisterMovingCar()
+    {
+        if (movingCarCount > 0)
+        {
+            movingCarCount = movingCarCount - 1;
+        }
+    }
+
+    public void CheckWinOnFullCapacity()
+    {
+        if (isWin || isLose)
+        {
+            return;
+        }
+
+        if (spawnManager != null && spawnManager.AreAllGuestSpawnPosEmpty())
+        {
+            isWin = true;
+        }
+    }
+
+    public void SetLose()
+    {
+        if (isWin || isLose)
+        {
+            return;
+        }
+
+        isLose = true;
     }
 
     public void AddCarDone()

@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GuestSpawnPos : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] public TextMeshProUGUI guestLeftDisplayTxt;
     [SerializeField] public Enums.GuestQueueType queueType = Enums.GuestQueueType.StraightUp;
 
     private List<GuestController> guestQueue = new List<GuestController>();
@@ -61,10 +64,16 @@ public class GuestSpawnPos : MonoBehaviour
         return guestQueue[0];
     }
 
+    public bool HasGuests()
+    {
+        return guestQueue.Count > 0;
+    }
+
     public void RemoveGuest(GuestController guest)
     {
         guestQueue.Remove(guest);
         AdvanceQueue();
+        UpdateGuestLeftDisplay();
     }
 
     public bool HasMatchingGuest(Enums.GameColor color)
@@ -104,6 +113,11 @@ public class GuestSpawnPos : MonoBehaviour
             Quaternion rotation = spawnManager.GetGuestQueueRotation(this, queueType);
             guest.MoveToQueueSlot(worldPos, rotation);
         }
+    }
+
+    public void UpdateGuestLeftDisplay()
+    {
+        guestLeftDisplayTxt.text = "" + guestQueue.Count;
     }
 
     private void OnTriggerEnter(Collider other)

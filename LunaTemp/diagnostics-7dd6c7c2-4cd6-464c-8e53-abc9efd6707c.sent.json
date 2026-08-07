@@ -1,24 +1,24 @@
 {
-    "BuildID": "5f157d4e-b931-4566-a77e-cb293c62f99d",
+    "BuildID": "7dd6c7c2-4cd6-464c-8e53-abc9efd6707c",
     "Command": "project:build",
     "ProjectID": "cbfe3c40de136434a969a42bad174c40",
-    "ProjectStateHash": "a9c02428e2033b0b761f0b541f105660d164714c00f6d1f206adc9fb73cf14be",
+    "ProjectStateHash": "735bf048d3bceb885e5ac88b2f08308eed3262f02de1d0a8129f06afb1a1de50",
     "StageCompletedAt": 3,
     "EarliestFatalError": 0,
-    "StartTime": 1786098322754,
-    "EndTime": 1786098374728,
+    "StartTime": 1786129316025,
+    "EndTime": 1786129390621,
     "PlaygroundUserID": 22377,
     "OperatingSystem": "win32",
     "UnityPackageID": null,
     "TargetPlatform": "develop",
     "UnityVersion": "6000.0.66f2",
     "LunaVersion": "7.2.0",
-    "LogCount": 10,
+    "LogCount": 13,
     "Logs": [
         {
-            "LogID": "935edb78-f667-46ce-9b19-fab381a08904",
-            "Order": 6,
-            "Timestamp": 1786098375427,
+            "LogID": "dd0c282e-0635-4ac9-a157-e243906cbad3",
+            "Order": 9,
+            "Timestamp": 1786129391209,
             "Stage": 3,
             "ErrorType": 0,
             "ErrorCode": "LP3005",
@@ -40,9 +40,9 @@
             "Severity": 0
         },
         {
-            "LogID": "8868714b-35ef-4457-ad61-8d87813869fc",
-            "Order": 6,
-            "Timestamp": 1786098375512,
+            "LogID": "1dfa442c-8eff-4f26-9f98-b6bfccff5b1c",
+            "Order": 9,
+            "Timestamp": 1786129391263,
             "Stage": 3,
             "ErrorType": 1,
             "ErrorCode": "LP3006",
@@ -66,9 +66,9 @@
             "Severity": 0
         },
         {
-            "LogID": "52352649-28d5-454b-b16d-2af934263125",
-            "Order": 6,
-            "Timestamp": 1786098375512,
+            "LogID": "e13642f1-e002-4118-87e6-a9f3a7151697",
+            "Order": 9,
+            "Timestamp": 1786129391265,
             "Stage": 3,
             "ErrorType": 1,
             "ErrorCode": "LP3015",
@@ -92,9 +92,9 @@
             "Severity": 0
         },
         {
-            "LogID": "cdce7c6c-bccc-4396-aaa0-e3fccfc02a21",
-            "Order": 6,
-            "Timestamp": 1786098375512,
+            "LogID": "b076eb29-bb7f-425b-b0c1-062ebe65f904",
+            "Order": 9,
+            "Timestamp": 1786129391265,
             "Stage": 3,
             "ErrorType": 3,
             "ErrorCode": "LP3007",
@@ -116,9 +116,9 @@
             "Severity": 0
         },
         {
-            "LogID": "971653b2-2c3a-4811-87b7-9553cc24bd2b",
-            "Order": 6,
-            "Timestamp": 1786098375515,
+            "LogID": "50f484ee-db6b-4aae-8648-71a493035ab0",
+            "Order": 9,
+            "Timestamp": 1786129391266,
             "Stage": 3,
             "ErrorType": 3,
             "ErrorCode": "LP3011",
@@ -136,9 +136,32 @@
             "Severity": 0
         },
         {
-            "LogID": "d2713269-34d3-4f6b-80d3-bb363920c730",
+            "LogID": "1f4705f8-a0c3-4d99-854f-f5633ee3ae8f",
             "Order": 0,
-            "Timestamp": 1786098329636,
+            "Timestamp": 1786129319223,
+            "Stage": 1,
+            "ErrorType": 0,
+            "ErrorCode": "LP1030",
+            "Description": "TMP Font Asset uses unsupported 'Atlas Population Mode'",
+            "Details": [
+                "TMP Font Asset '{0}' uses Atlas Population Mode '{1}' which is not supported"
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "LiberationSans SDF - Fallback",
+                "Dynamic"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "d7fcd296-d0e8-42e3-9164-afa34ef7fb2b",
+            "Order": 1,
+            "Timestamp": 1786129321811,
             "Stage": 1,
             "ErrorType": 3,
             "ErrorCode": "LP1040",
@@ -158,9 +181,9 @@
             "Severity": 0
         },
         {
-            "LogID": "b636ff04-8cd3-4b8b-8564-1b24f75f96bd",
-            "Order": 1,
-            "Timestamp": 1786098335447,
+            "LogID": "03acca0f-19bf-4df0-a105-fd8f6ef8944c",
+            "Order": 2,
+            "Timestamp": 1786129335289,
             "Stage": 1,
             "ErrorType": 2,
             "ErrorCode": "LP1014",
@@ -178,9 +201,9 @@
             "Severity": 0
         },
         {
-            "LogID": "bc3b4d60-45d4-418f-8cd6-2d891c427295",
-            "Order": 2,
-            "Timestamp": 1786098335447,
+            "LogID": "1fa3738d-3aec-47fa-b217-a05342fa1412",
+            "Order": 3,
+            "Timestamp": 1786129335291,
             "Stage": 1,
             "ErrorType": 2,
             "ErrorCode": "LP1016",
@@ -204,9 +227,9 @@
             "Severity": 0
         },
         {
-            "LogID": "8d69babf-e4d0-4315-94bc-f89ed015b826",
-            "Order": 3,
-            "Timestamp": 1786098335454,
+            "LogID": "4e8770a4-11b4-4dfd-97e3-59182ad5b0b3",
+            "Order": 4,
+            "Timestamp": 1786129335292,
             "Stage": 1,
             "ErrorType": 2,
             "ErrorCode": "LP1022",
@@ -227,9 +250,32 @@
             "Severity": 0
         },
         {
-            "LogID": "79c0b5cb-b166-4885-ae42-f28f1f46f3eb",
-            "Order": 4,
-            "Timestamp": 1786098335481,
+            "LogID": "2a1bd808-5d61-4093-b1d0-899b0ee24321",
+            "Order": 5,
+            "Timestamp": 1786129335312,
+            "Stage": 1,
+            "ErrorType": 2,
+            "ErrorCode": "LP1024",
+            "Description": "Huge RAM usage",
+            "Details": [
+                "Playable have huge RAM usage (341.60 MB). Recommended RAM value is lower than 256.00 MB to support low-end devices"
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "256.00",
+                "341.60"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "83c2533d-d5c8-4610-8d01-21a550ab6d0b",
+            "Order": 6,
+            "Timestamp": 1786129335393,
             "Stage": 1,
             "ErrorType": 0,
             "ErrorCode": "LP1032",
@@ -246,6 +292,29 @@
             "LogCount": 1,
             "LinePosition": 0,
             "FilePath": "C:/Workspace/Unity/iKame Technical Test Bus Away/Packages\\manifest.json",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "330a8bb1-c99f-4652-9124-3958b9a1d18c",
+            "Order": 7,
+            "Timestamp": 1786129335396,
+            "Stage": 1,
+            "ErrorType": 3,
+            "ErrorCode": "LP1002",
+            "Description": "Repeat wrap mode used on a texture with non power-of-two dimensions, this might not be rendered correctly.",
+            "Details": [
+                "Repeat wrap mode used on 'LiberationSans SDF Atlas' texture at 'Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset' with non power-of-two dimensions, this might not be rendered correctly."
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "LiberationSans SDF Atlas",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
             "ClassName": "",
             "MemberName": "",
             "Severity": 0

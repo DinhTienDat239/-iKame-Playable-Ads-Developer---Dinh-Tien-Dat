@@ -19,6 +19,23 @@ public class CarController : MonoBehaviour
     [SerializeField] private float parkRotationY = -150f;
     [SerializeField] private float parkApproachDistance = 2f;
     [SerializeField] private float exitOffsetX = -10f;
+    [SerializeField] private float fullExitSpeedMultiplier = 1.5f;
+    [SerializeField] private float boostBodyTiltX = -7f;
+    [SerializeField] private float boostBodyTiltDuration = 0.15f;
+    [SerializeField] private float parkBrakeTiltX = 10f;
+    [SerializeField] private float parkBrakeTiltInDuration = 0.12f;
+    [SerializeField] private float parkBrakeTiltOutDuration = 0.28f;
+    [SerializeField] private float turnSwayMaxZ = 7f;
+    [SerializeField] private float turnSwayFactor = 0.045f;
+    [SerializeField] private float turnSwayReturnSpeed = 10f;
+
+    [Header("Collision Avoidance")]
+    [SerializeField] private float collisionCheckDistance = 3f;
+
+    [Header("Hood")]
+    [SerializeField] private float hoodCloseDuration = 0.25f;
+    [SerializeField] private Vector3 hoodClosedStartScale = new Vector3(0.05f, 0.05f, 0.05f);
+    [SerializeField] private float hoodCloseDropOffset = 0.4f;
 
     [Header("Seats")]
     [SerializeField] private Transform[] seatTransforms;
@@ -26,6 +43,7 @@ public class CarController : MonoBehaviour
     [Header("References")]
     [SerializeField] private MeshRenderer carBodyMeshRenderer;
     [SerializeField] private MeshRenderer carHoodMeshRenderer;
+    [SerializeField] private GameObject carBody;
 
     public bool isMoving;
     public int currentPassengerCount;
@@ -43,6 +61,113 @@ public class CarController : MonoBehaviour
     private bool isPickingUp;
     private bool isOnGuestPathRoute;
     private GuestSpawnPos pendingPickupSpawnPos;
+    public bool _isBlockedByAhead;
+    private float _blockedTargetSpeed;
+    public bool _isReversing;
+    private TweenCallback _pendingReverseCallback;
+    public bool isOutOfCarLine = false;
+
+    private Vector3 hoodRestLocalPos;
+    private Vector3 hoodRestLocalScale;
+    private bool hoodRestCached;
+    private Tween hoodTween;
+    private bool isHoodClosed;
+    private bool fullExitSpeedBoostApplied;
+    private Tween carBodyTiltTween;
+    private Vector3 carBodyRestLocalEuler;
+    private bool carBodyRestCached;
+    private float bodyPitchX;
+    private float bodySwayZ;
+    private float previousTurnYaw;
+    private bool turnYawInitialized;
+
+    private void Awake()
+    {
+        GetCarBodyTransform();
+    }
+
+    private void Update()
+    {
+        UpdateCarBodyTurnSway();
+
+        if (isMoving && isOutOfCarLine)
+        {
+            CheckAheadCollision();
+        }
+    }
+
+    private void CheckAheadCollision()
+    {
+        Vector3 dir = transform.forward;
+        dir.y = 0f;
+        if (_isReversing)
+        {
+            dir = -dir;
+        }
+        if (dir.sqrMagnitude < 0.0001f)
+        {
+            return;
+        }
+
+        dir.Normalize();
+
+        float backwardOffset = 0.8f;
+        Vector3 rayOrigin = transform.position - dir * backwardOffset;
+        float totalRayDistance = collisionCheckDistance + backwardOffset;
+
+        RaycastHit hitInfo;
+        bool isHit = Physics.Raycast(
+            rayOrigin,
+            dir,
+            out hitInfo,
+            totalRayDistance,
+            Physics.DefaultRaycastLayers,
+            QueryTriggerInteraction.Collide);
+
+#if UNITY_EDITOR
+        if (isHit)
+        {
+            Debug.DrawRay(rayOrigin, dir * hitInfo.distance, Color.red);
+        }
+        else
+        {
+            Debug.DrawRay(rayOrigin, dir * totalRayDistance, Color.green);
+        }
+#endif
+
+        if (isHit)
+        {
+            CarController ahead = hitInfo.collider.GetComponentInParent<CarController>();
+            if (ahead != null && ahead != this && !ahead.isParked && !ahead._isReversing)
+            {
+                float targetSpeed;
+                if (ahead.isPickingUp)
+                {
+                    targetSpeed = guestPickupSpeed;
+                }
+                else
+                {
+                    targetSpeed = 0f;
+                }
+
+                // Chỉ apply khi lần đầu bị chặn, hoặc target speed thay đổi
+                if (!_isBlockedByAhead || !Mathf.Approximately(_blockedTargetSpeed, targetSpeed))
+                {
+                    _isBlockedByAhead = true;
+                    _blockedTargetSpeed = targetSpeed;
+                    SetActiveMoveSpeed(targetSpeed);
+                }
+                return;
+            }
+        }
+
+        if (_isBlockedByAhead)
+        {
+            _isBlockedByAhead = false;
+            _blockedTargetSpeed = 0f;
+            SetActiveMoveSpeed(moveSpeed);
+        }
+    }
 
     public void Init()
     {
@@ -56,16 +181,84 @@ public class CarController : MonoBehaviour
         carBodyMeshRenderer.sharedMaterials = bodyMaterials;
 
         carHoodMeshRenderer.sharedMaterial = carMat;
-        SetHoodActive(true);
+        if (carHoodMeshRenderer != null)
+        {
+            hoodRestLocalPos = carHoodMeshRenderer.transform.localPosition;
+            hoodRestLocalScale = carHoodMeshRenderer.transform.localScale;
+            hoodRestCached = true;
+            carHoodMeshRenderer.gameObject.SetActive(true);
+        }
+        isHoodClosed = true;
         currentPassengerCount = 0;
         activeMoveSpeed = moveSpeed;
     }
 
     private void SetHoodActive(bool active)
     {
-        if (carHoodMeshRenderer != null)
+        if (carHoodMeshRenderer == null)
         {
-            carHoodMeshRenderer.gameObject.SetActive(active);
+            return;
+        }
+
+        if (hoodTween != null)
+        {
+            hoodTween.Kill();
+            hoodTween = null;
+        }
+
+        if (!active)
+        {
+            isHoodClosed = false;
+            carHoodMeshRenderer.gameObject.SetActive(false);
+            return;
+        }
+
+        if (isHoodClosed)
+        {
+            return;
+        }
+
+        if (!hoodRestCached)
+        {
+            hoodRestLocalPos = carHoodMeshRenderer.transform.localPosition;
+            hoodRestLocalScale = carHoodMeshRenderer.transform.localScale;
+            hoodRestCached = true;
+        }
+
+        Transform hood = carHoodMeshRenderer.transform;
+        hood.gameObject.SetActive(true);
+
+        Vector3 startPos = hoodRestLocalPos;
+        startPos.y = hoodRestLocalPos.y + hoodCloseDropOffset;
+        hood.localPosition = startPos;
+        hood.localScale = hoodClosedStartScale;
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.Join(hood.DOLocalMove(hoodRestLocalPos, hoodCloseDuration).SetEase(Ease.OutQuad));
+        sequence.Join(hood.DOScale(hoodRestLocalScale, hoodCloseDuration).SetEase(Ease.OutBack));
+        hoodTween = sequence;
+        isHoodClosed = true;
+
+        ScaleSeatsToZero();
+    }
+
+    private void ScaleSeatsToZero()
+    {
+        if (seatTransforms == null)
+        {
+            return;
+        }
+
+        float duration = hoodCloseDuration * 1.5f;
+        for (int i = 0; i < seatTransforms.Length; i++)
+        {
+            if (seatTransforms[i] == null)
+            {
+                continue;
+            }
+
+            seatTransforms[i].DOKill();
+            seatTransforms[i].DOScale(Vector3.zero, duration).SetEase(Ease.InQuad);
         }
     }
 
@@ -147,6 +340,11 @@ public class CarController : MonoBehaviour
         isPickingUp = false;
         pendingPickupSpawnPos = null;
         SetActiveMoveSpeed(moveSpeed);
+
+        if (IsFullCapacity())
+        {
+            SetHoodActive(true);
+        }
     }
 
     private Transform GetSeatTransform(int seatIndex)
@@ -219,12 +417,18 @@ public class CarController : MonoBehaviour
             return;
         }
 
-        if (slot == null || path == null || path.Length < 3)
+        if (path == null || path.Length < 3)
         {
             return;
         }
 
+        isOutOfCarLine = true;
         assignedSlot = slot;
+        if (slot != null)
+        {
+            slot.isParked = true;
+        }
+
         parkingPath = path;
         goInLineStep = 0;
         isMoving = true;
@@ -249,7 +453,7 @@ public class CarController : MonoBehaviour
             return;
         }
 
-        if (!isParked || assignedSlot == null)
+        if (assignedSlot == null)
         {
             return;
         }
@@ -260,10 +464,19 @@ public class CarController : MonoBehaviour
         }
 
         parkingPath = path;
-        isParked = false;
         fromParkingStep = 0;
         isMoving = true;
         RunFromParkingStep();
+    }
+
+    public void ReleaseParkingSlot()
+    {
+        if (assignedSlot != null)
+        {
+            assignedSlot.isParked = false;
+        }
+
+        isParked = false;
     }
 
     public void MoveInQueue(Vector3 target)
@@ -367,7 +580,17 @@ public class CarController : MonoBehaviour
 
         if (IsFullCapacity())
         {
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.CheckWinOnFullCapacity();
+            }
+
             RunFullCapacityExit();
+            return;
+        }
+
+        if (!TryAssignParkingSlotAfterGuestPath())
+        {
             return;
         }
 
@@ -381,11 +604,67 @@ public class CarController : MonoBehaviour
 
         if (IsFullCapacity())
         {
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.CheckWinOnFullCapacity();
+            }
+
             RunFullCapacityExit();
             return;
         }
 
+        if (!TryAssignParkingSlotAfterGuestPath())
+        {
+            return;
+        }
+
         AdvanceFromParkingStep();
+    }
+
+    private bool TryAssignParkingSlotAfterGuestPath()
+    {
+        ParkingSlotManager parkingSlotManager = null;
+        GameManager gameManager = GameManager.Instance;
+        if (gameManager != null)
+        {
+            parkingSlotManager = gameManager.parkingSlotManager;
+        }
+
+        if (parkingSlotManager == null)
+        {
+            HandleParkingFail();
+            return false;
+        }
+
+        if (assignedSlot != null && !assignedSlot.isParked)
+        {
+            assignedSlot.isParked = true;
+            return true;
+        }
+
+        ParkingSlotController freeSlot = parkingSlotManager.GetFreeSlot();
+        if (freeSlot == null)
+        {
+            HandleParkingFail();
+            return false;
+        }
+
+        assignedSlot = freeSlot;
+        freeSlot.isParked = true;
+        return true;
+    }
+
+    private void HandleParkingFail()
+    {
+        KillMoveTween();
+        KillSpeedTween();
+        isMoving = false;
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SetLose();
+            GameManager.Instance.UnregisterMovingCar();
+        }
     }
 
     private bool IsFullCapacity()
@@ -409,7 +688,198 @@ public class CarController : MonoBehaviour
         route[0] = transform.position;
         route[1] = point3;
         route[2] = exitPoint;
-        MoveAlongPoints(route, OnCarExitFull);
+        MoveFullCapacityExit(route, OnCarExitFull);
+    }
+
+    private void MoveFullCapacityExit(Vector3[] route, TweenCallback onComplete)
+    {
+        if (route == null || route.Length < 2)
+        {
+            if (onComplete != null)
+            {
+                onComplete();
+            }
+            return;
+        }
+
+        fullExitSpeedBoostApplied = false;
+        KillMoveTween();
+        activeMoveSpeed = moveSpeed;
+        moveTween = transform
+            .DOPath(route, activeMoveSpeed, PathType.CatmullRom, PathMode.Full3D, 20)
+            .SetSpeedBased()
+            .SetEase(Ease.Linear)
+            .SetLookAt(pathLookAhead)
+            .OnUpdate(CheckFullExitSpeedBoost)
+            .OnComplete(onComplete);
+        ApplyTweenSpeed();
+    }
+
+    private void CheckFullExitSpeedBoost()
+    {
+        if (fullExitSpeedBoostApplied)
+        {
+            return;
+        }
+
+        if (!HasReachedFullExitBoostPoint())
+        {
+            return;
+        }
+
+        fullExitSpeedBoostApplied = true;
+        SetActiveMoveSpeed(moveSpeed * fullExitSpeedMultiplier);
+        PlayCarBodyBoostTilt();
+    }
+
+    private void PlayCarBodyBoostTilt()
+    {
+        if (GetCarBodyTransform() == null)
+        {
+            return;
+        }
+
+        KillCarBodyTiltTween();
+        carBodyTiltTween = DOVirtual.Float(bodyPitchX, boostBodyTiltX, boostBodyTiltDuration, OnBodyPitchUpdate)
+            .SetEase(Ease.OutQuad);
+    }
+
+    private void PlayCarBodyParkBrakeTilt()
+    {
+        if (GetCarBodyTransform() == null)
+        {
+            return;
+        }
+
+        KillCarBodyTiltTween();
+        bodyPitchX = 0f;
+
+        Sequence brakeSequence = DOTween.Sequence();
+        brakeSequence.Append(
+            DOVirtual.Float(0f, parkBrakeTiltX, parkBrakeTiltInDuration, OnBodyPitchUpdate)
+                .SetEase(Ease.OutQuad));
+        brakeSequence.Append(
+            DOVirtual.Float(parkBrakeTiltX, 0f, parkBrakeTiltOutDuration, OnBodyPitchUpdate)
+                .SetEase(Ease.OutBack));
+        carBodyTiltTween = brakeSequence;
+    }
+
+    private void OnBodyPitchUpdate(float pitchX)
+    {
+        bodyPitchX = pitchX;
+        ApplyCarBodyLocalRotation();
+    }
+
+    private void UpdateCarBodyTurnSway()
+    {
+        if (GetCarBodyTransform() == null)
+        {
+            return;
+        }
+
+        if (moveTween != null && moveTween.IsActive())
+        {
+            float yaw = transform.eulerAngles.y;
+            if (turnYawInitialized)
+            {
+                float deltaYaw = Mathf.DeltaAngle(previousTurnYaw, yaw);
+                float turnRate = deltaYaw / Time.deltaTime;
+                float targetSway = -turnRate * turnSwayFactor;
+                if (targetSway > turnSwayMaxZ)
+                {
+                    targetSway = turnSwayMaxZ;
+                }
+                else if (targetSway < -turnSwayMaxZ)
+                {
+                    targetSway = -turnSwayMaxZ;
+                }
+
+                bodySwayZ = Mathf.Lerp(bodySwayZ, targetSway, Time.deltaTime * turnSwayReturnSpeed);
+            }
+
+            previousTurnYaw = yaw;
+            turnYawInitialized = true;
+        }
+        else
+        {
+            turnYawInitialized = false;
+            bodySwayZ = Mathf.Lerp(bodySwayZ, 0f, Time.deltaTime * turnSwayReturnSpeed);
+        }
+
+        ApplyCarBodyLocalRotation();
+    }
+
+    private void ApplyCarBodyLocalRotation()
+    {
+        Transform body = GetCarBodyTransform();
+        if (body == null)
+        {
+            return;
+        }
+
+        Vector3 euler = carBodyRestLocalEuler;
+        euler.x = euler.x + bodyPitchX;
+        euler.z = euler.z + bodySwayZ;
+        body.localEulerAngles = euler;
+    }
+
+    private void KillCarBodyTiltTween()
+    {
+        if (carBodyTiltTween != null)
+        {
+            carBodyTiltTween.Kill();
+            carBodyTiltTween = null;
+        }
+    }
+
+    private Transform GetCarBodyTransform()
+    {
+        Transform body = null;
+        if (carBody != null)
+        {
+            body = carBody.transform;
+        }
+        else if (carBodyMeshRenderer != null)
+        {
+            body = carBodyMeshRenderer.transform;
+        }
+
+        if (body != null && !carBodyRestCached)
+        {
+            carBodyRestLocalEuler = body.localEulerAngles;
+            carBodyRestCached = true;
+        }
+
+        return body;
+    }
+
+    private bool HasReachedFullExitBoostPoint()
+    {
+        if (parkingPath == null || parkingPath.Length < 3)
+        {
+            return false;
+        }
+
+        if (parkingPath[1] == null || parkingPath[2] == null)
+        {
+            return false;
+        }
+
+        Vector3 point2 = parkingPath[1].position;
+        Vector3 point3 = parkingPath[2].position;
+        Vector3 segment = point3 - point2;
+        segment.y = 0f;
+
+        float segmentSqr = segment.sqrMagnitude;
+        if (segmentSqr < 0.0001f)
+        {
+            return false;
+        }
+
+        Vector3 toCar = transform.position - point2;
+        toCar.y = 0f;
+        float t = Vector3.Dot(toCar, segment) / segmentSqr;
+        return t >= 0.333f;
     }
 
     private void OnCarExitFull()
@@ -422,6 +892,7 @@ public class CarController : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
+            GameManager.Instance.UnregisterMovingCar();
             GameManager.Instance.AddCarDone();
         }
 
@@ -501,10 +972,16 @@ public class CarController : MonoBehaviour
         isParked = true;
         isMoving = false;
         isFirstLine = false;
+        PlayCarBodyParkBrakeTilt();
 
-        if (GameManager.Instance != null && GameManager.Instance.spawnManager != null)
+        if (GameManager.Instance != null)
         {
-            GameManager.Instance.spawnManager.ResetGuestTriggersForCar(this);
+            GameManager.Instance.UnregisterMovingCar();
+
+            if (GameManager.Instance.spawnManager != null)
+            {
+                GameManager.Instance.spawnManager.ResetGuestTriggersForCar(this);
+            }
         }
     }
 
@@ -518,13 +995,26 @@ public class CarController : MonoBehaviour
     {
         KillMoveTween();
         transform.rotation = Quaternion.Euler(0f, parkRotationY, 0f);
+        _isReversing = true;
+        _pendingReverseCallback = onComplete;
 
         moveTween = transform
             .DOMove(target, activeMoveSpeed)
             .SetSpeedBased()
             .SetEase(Ease.Linear)
-            .OnComplete(onComplete);
+            .OnComplete(OnMoveReverseComplete);
         ApplyTweenSpeed();
+    }
+
+    private void OnMoveReverseComplete()
+    {
+        _isReversing = false;
+        TweenCallback cb = _pendingReverseCallback;
+        _pendingReverseCallback = null;
+        if (cb != null)
+        {
+            cb();
+        }
     }
 
     private void OnGuestPathFinishedAlone()
@@ -742,6 +1232,17 @@ public class CarController : MonoBehaviour
     private void OnDisable()
     {
         KillMoveTween();
+        if (hoodTween != null)
+        {
+            hoodTween.Kill();
+            hoodTween = null;
+        }
+        KillCarBodyTiltTween();
+        bodyPitchX = 0f;
+        bodySwayZ = 0f;
         isMoving = false;
+        _isBlockedByAhead = false;
+        _isReversing = false;
+        _pendingReverseCallback = null;
     }
 }

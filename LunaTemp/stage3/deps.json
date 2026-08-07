@@ -1,0 +1,132 @@
+{
+  "ignores": [
+    "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModuleAudio.cs",
+    "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModulePhysics.cs",
+    "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModulePhysics2D.cs",
+    "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModuleSprite.cs",
+    "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModuleUI.cs",
+    "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModuleUnityVersion.cs"
+  ],
+  "groups": [
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/CarController.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/PlayerInteraction.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Managers/ParkingSlotManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Managers/GameManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/GuestController.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Managers/SpawnManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Managers/CarLineManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Static/Enums.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/GuestSpawnPos.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Data/CarSpawnData.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Data/ColorPalette.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Data/GuestColorSpawnData.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/DesignPatterns/Singleton.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/Optimization/SCU/SCUManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/System/AudioManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/System/ResponsiveManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/System/SEPManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/System/TutorialManager.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Path/GuestPath.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/00GAME/Scripts/Controllers/ParkingSlotController.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Analytics/AxonTracking.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/DesignPatterns/ObjectPooling.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/Motion/MouseFollower.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/FX/For All FX/PulseEffect.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Enums/PulseMode.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/FX/For All FX/TargetPulseController.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/FX/For All FX/RotationEffect.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Enums/RotationMode.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/Motion/SequentialMover.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/Motion/TargetArrival.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/Motion/UIImageSpriteAnimation.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/Optimization/Bake/TransparentBackgroundScreenshotRecorder.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/Optimization/ColliderSimplifier/EdgeColliderOptimizer.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/Optimization/ColliderSimplifier/ShapeOptimizationHelper.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/Optimization/ColliderSimplifier/PolygonColliderOptimizer.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Core/System/CTAManager.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Enums/FadeMode.cs",
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/FX/For All FX/FadeEffect.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Examples/1. Motion and FX Scripts/MotionAndFXExample.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/Examples/2. Mesh Combiner Scripts/MeshCombinerExample.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/FX/For All FX/ShakeEffect.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/FX/For All FX/ShineEffect.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/FX/For All FX/TargetColorController.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/FX/For All FX/TargetShakeController.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/FX/For All FX/TargetSpriteController.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DAT SDK/FX/UI FX/UITypingEffect.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModuleAudio.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModuleEPOOutline.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModulePhysics.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModulePhysics2D.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModuleSprite.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModuleUI.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModuleUnityVersion.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/DOTween/Modules/DOTweenModuleUtils.cs"
+    ],
+    [
+      "C:/Workspace/Unity/iKame Technical Test Bus Away/LunaTemp/stage3/processed-scripts/Assets/TutorialInfo/Scripts/Readme.cs"
+    ],
+    [
+      "C:/Workspace/Luna/7.2.0/pipeline/templates/LunaCompiler/Scripts/Properties/AssemblyInfo.cs"
+    ],
+    [
+      "C:/Workspace/Luna/7.2.0/pipeline/templates/LunaCompiler/Scripts/Sources/OtherDummyScript.cs"
+    ],
+    [
+      "C:/Workspace/Luna/7.2.0/pipeline/templates/LunaCompiler/Scripts/obj/Debug/.NETFramework,Version=v4.7.AssemblyAttributes.cs"
+    ]
+  ]
+}

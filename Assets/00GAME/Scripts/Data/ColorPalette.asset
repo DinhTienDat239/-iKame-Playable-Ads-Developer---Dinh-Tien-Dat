@@ -14,20 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entries:
   - color: 0
-    carMaterial: {fileID: 2100000, guid: d47f05cb26998f8479318aa3f0e1f43f, type: 2}
-    humanMaterial: {fileID: 0}
+    carMaterial: {fileID: 2100000, guid: 1d33b992949d6dc4f997b556cab9c101, type: 2}
+    carOutlineMaterial: {fileID: 2100000, guid: e0958290b247e694b809dcbaafed3311, type: 2}
+    humanMaterial: {fileID: 2100000, guid: 370a7672af7636a49a94e3352575b800, type: 2}
   - color: 1
-    carMaterial: {fileID: 2100000, guid: a3856893c445733489319e59a30202f4, type: 2}
-    humanMaterial: {fileID: 0}
+    carMaterial: {fileID: 2100000, guid: be2bbdf0ed5abc7499c9b6efc864bded, type: 2}
+    carOutlineMaterial: {fileID: 2100000, guid: be612ca6578902a47b872eafa0a723f3, type: 2}
+    humanMaterial: {fileID: 2100000, guid: f8a741e761722484bb32a2f281219b63, type: 2}
   - color: 2
-    carMaterial: {fileID: 2100000, guid: 3239ce3738af9804b912aa33d63d6c01, type: 2}
-    humanMaterial: {fileID: 0}
+    carMaterial: {fileID: 2100000, guid: 9c5a1c28cfd611142998d88a6c0caef2, type: 2}
+    carOutlineMaterial: {fileID: 2100000, guid: 665431ad82ce49b449415e938bcc4f5f, type: 2}
+    humanMaterial: {fileID: 2100000, guid: ad4e8ab914e5bee44bcba63c00ade1a8, type: 2}
   - color: 3
-    carMaterial: {fileID: 2100000, guid: 71be21522f69059428a5960a24e1a1be, type: 2}
-    humanMaterial: {fileID: 0}
+    carMaterial: {fileID: 2100000, guid: 98ed7410cbd82364d98cafcf0d1f3812, type: 2}
+    carOutlineMaterial: {fileID: 2100000, guid: 9e5bde1e54abb3a45abb99cdb7523542, type: 2}
+    humanMaterial: {fileID: 2100000, guid: f02c6f07a0c021a4296a91f99163caf2, type: 2}
   - color: 4
-    carMaterial: {fileID: 2100000, guid: ac73baa66dfe1074ab0e9e2681cd7558, type: 2}
-    humanMaterial: {fileID: 0}
+    carMaterial: {fileID: 2100000, guid: 3e2a34dd40bf47e459fe42075a692b15, type: 2}
+    carOutlineMaterial: {fileID: 2100000, guid: 6bd1664d67a5a9449951b24190a57326, type: 2}
+    humanMaterial: {fileID: 2100000, guid: a45a9c790c3a3b64cadb300cf6252fa3, type: 2}
   - color: 5
-    carMaterial: {fileID: 2100000, guid: b03eeb98b2e7b8043b50777462f4fcf3, type: 2}
-    humanMaterial: {fileID: 0}
+    carMaterial: {fileID: 2100000, guid: ca2185c9b3bdd6041ba95f1e12c21925, type: 2}
+    carOutlineMaterial: {fileID: 2100000, guid: 458274f3a8e44a042ad22030e995c3e0, type: 2}
+    humanMaterial: {fileID: 2100000, guid: 828da36a42afed04983bf7fd7189af3e, type: 2}

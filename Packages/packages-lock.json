@@ -9,6 +9,12 @@
       },
       "hash": "fd8ff1fb700caf062eb5cce364c1d0a85f99ebe6"
     },
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.9",
       "depth": 0,
@@ -104,7 +110,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.playworks.upp": {
-      "version": "file:C:/Workspace/Luna/7.2.0/scripts",
+      "version": "file:../../../Luna/7.2.0/scripts",
       "depth": 0,
       "source": "local",
       "dependencies": {}

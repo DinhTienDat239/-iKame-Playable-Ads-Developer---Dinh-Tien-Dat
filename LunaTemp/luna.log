@@ -1,0 +1,272 @@
+report@config:load 63.32
+Authorized using stored user info.
+report@account:authorize 25.70
+stderr: 'rm' is not recognized as an internal or external command,
+operable program or batch file.
+
+Exporting assets from Unity...............
+
+[ Stage1 ] Assets exported from Unity and staged for further processing
+report@unity:export 12201.62
+report@config:load 43.11
+Found custom rules for texture Resources/unity_builtin_extra/Default-Particle
+  {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"none","quality":65,"script":"","ext":"","name":"Resources/unity_builtin_extra/Default-Particle","isOverride":true}
+Resources:
+{}
+report@assets:stage2 7230.32
+report@assets:stage3 716.84
+[ Stage2 ] Assets postprocessed and bundled successfully
+report@config:unity 0.23
+report@config:load 48.47
+report@config:unity 0.10
+report@code:compose 595.86
+Authorized using stored user info.
+report@account:authorize 10.86
+MSBuild version 17.3.1+2badb37d1 for .NET Framework
+
+Build started 8/7/2026 5:25:52 PM.
+
+Project "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj" on node 1 (Rebuild target(s)).
+
+CoreClean:
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityScriptsCompiler.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityScriptsCompiler.pdb".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.Html5.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.WebGL.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\DOTween.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.Core.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.dom.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.es5.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.scripthost.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\TextMeshPro.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityEngine.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityEngine.UI.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityEngine.UniversalRenderPipeline.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.xml".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.Html5.xml".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.WebGL.xml".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.xml".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.Core.xml".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.dom.xml".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.es5.xml".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.scripthost.xml".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\JetBrains.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\obj\Debug\Scripts.csproj.AssemblyReference.cache".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\obj\Debug\Scripts.csproj.CoreCompileInputs.cache".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\obj\Debug\Scripts.csproj.CopyComplete".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\obj\Debug\UnityScriptsCompiler.dll".
+
+  Deleting file "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\obj\Debug\UnityScriptsCompiler.pdb".
+
+_CleanIsIncrementalFile:
+  Deleting file "obj\Debug\\_IsIncrementalBuild".
+
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+
+CoreCompile:
+
+  C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\Roslyn\csc.exe /noconfig /nowarn:CS0626,1701,1702 /fullpaths /nostdlib+ /errorreport:prompt /warn:4 /define:UNITY_LUNA;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_6000;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2023_1_OR_NEWER;UNITY_2023_2_OR_NEWER;UNITY_2023_3_OR_NEWER;UNITY_6000_0_OR_NEWER;UNITY_6000_0;UNITY_6000_0_66 /highentropyva+ /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Core.17.9.42-luna\lib\net40\Bridge.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Html5.17.9.0\lib\net40\Bridge.Html5.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\DOTween.1.2.705\lib\net40\DOTween.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\com.unity.ide.rider\3.0.0\JetBrains.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.Core.1.6.6733\lib\net40\Retyped.Core.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.dom.2.8.6733\lib\net40\Retyped.dom.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.es5.2.8.6733\lib\net40\Retyped.es5.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.scripthost.2.8.6733\lib\net40\Retyped.scripthost.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\com.unity.textmeshpro\3.0.6\TextMeshPro.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Vendor\UnityEngine.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\com.unity.ui\1.2.1\UnityEngine.UI.dll /reference:C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\com.unity.urp\7.6\UnityEngine.UniversalRenderPipeline.dll /debug+ /debug:full /optimize- /out:obj\Debug\UnityScriptsCompiler.dll /subsystemversion:6.00 /target:library /warnaserror- /utf8output /langversion:8 "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Controllers\CarController.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Controllers\GuestController.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Controllers\GuestSpawnPos.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Controllers\ParkingSlotController.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Controllers\PlayerInteraction.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Data\CarSpawnData.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Data\ColorPalette.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Data\GuestColorSpawnData.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\CarLineManager.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\GameManager.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\ParkingSlotManager.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Path\GuestPath.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Static\Enums.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Analytics\AxonTracking.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\DesignPatterns\ObjectPooling.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\DesignPatterns\Singleton.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\Motion\MouseFollower.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\Motion\SequentialMover.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\Motion\TargetArrival.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\Motion\UIImageSpriteAnimation.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\Optimization\Bake\TransparentBackgroundScreenshotRecorder.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\Optimization\ColliderSimplifier\EdgeColliderOptimizer.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\Optimization\ColliderSimplifier\PolygonColliderOptimizer.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\Optimization\ColliderSimplifier\ShapeOptimizationHelper.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\Optimization\SCU\SCUManager.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\AudioManager.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\CTAManager.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\ResponsiveManager.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\SEPManager.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\TutorialManager.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Enums\FadeMode.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Enums\PulseMode.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Enums\RotationMode.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Examples\1. Motion and FX Scripts\MotionAndFXExample.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Examples\2. Mesh Combiner Scripts\MeshCombinerExample.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\FX\For All FX\FadeEffect.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\FX\For All FX\PulseEffect.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\FX\For All FX\RotationEffect.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\FX\For All FX\ShakeEffect.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\FX\For All FX\ShineEffect.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\FX\For All FX\TargetColorController.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\FX\For All FX\TargetPulseController.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\FX\For All FX\TargetShakeController.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\FX\For All FX\TargetSpriteController.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\FX\UI FX\UITypingEffect.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DOTween\Modules\DOTweenModuleAudio.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DOTween\Modules\DOTweenModuleEPOOutline.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DOTween\Modules\DOTweenModulePhysics.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DOTween\Modules\DOTweenModulePhysics2D.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DOTween\Modules\DOTweenModuleSprite.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DOTween\Modules\DOTweenModuleUI.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DOTween\Modules\DOTweenModuleUnityVersion.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DOTween\Modules\DOTweenModuleUtils.cs" "C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\TutorialInfo\Scripts\Readme.cs" Properties/AssemblyInfo.cs Sources/OtherDummyScript.cs "obj\Debug\.NETFramework,Version=v4.7.AssemblyAttributes.cs"
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(26,45): warning CS0649: Field 'SpawnManager.column0' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(36,40): warning CS0649: Field 'SpawnManager.guestParent' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(49,52): warning CS0649: Field 'SpawnManager.guestColors1' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(45,46): warning CS0649: Field 'SpawnManager.guestSpawnPositions' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(27,45): warning CS0649: Field 'SpawnManager.column1' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(17,36): warning CS0649: Field 'SpawnManager.spawnY' is never assigned to, and will always have its default value 0 [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Controllers\CarController.cs(22,43): warning CS0649: Field 'CarController.carHoodMeshRenderer' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(18,40): warning CS0649: Field 'SpawnManager.carParent' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\AudioManager.cs(14,46): warning CS0649: Field 'AudioManager.musicA' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\SEPManager.cs(13,16): warning CS0649: Field 'SEPManager.awakeEvents' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(8,41): warning CS0649: Field 'SpawnManager.car4Prefab' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(28,45): warning CS0649: Field 'SpawnManager.column2' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\SEPManager.cs(15,16): warning CS0649: Field 'SEPManager.startEvents' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(48,52): warning CS0649: Field 'SpawnManager.guestColors0' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Path\GuestPath.cs(8,42): warning CS0649: Field 'GuestPath.waypoints' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(51,52): warning CS0649: Field 'SpawnManager.guestColors3' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\TutorialManager.cs(11,39): warning CS0649: Field 'TutorialManager.tutorialObjects' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(29,45): warning CS0649: Field 'SpawnManager.column3' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(15,36): warning CS0649: Field 'SpawnManager.firstLineZ' is never assigned to, and will always have its default value 0 [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Controllers\GuestController.cs(9,50): warning CS0649: Field 'GuestController.meshRendererBody' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(9,41): warning CS0649: Field 'SpawnManager.car6Prefab' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Controllers\CarController.cs(21,43): warning CS0649: Field 'CarController.carBodyMeshRenderer' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\AudioManager.cs(15,46): warning CS0649: Field 'AudioManager.musicB' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(30,45): warning CS0649: Field 'SpawnManager.column4' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(35,41): warning CS0649: Field 'SpawnManager.guestPrefab' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(50,52): warning CS0649: Field 'SpawnManager.guestColors2' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(10,41): warning CS0649: Field 'SpawnManager.car10Prefab' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\TutorialManager.cs(16,31): warning CS0649: Field 'TutorialManager.highlightMaterial' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+  CompilerServer: server - server processed compilation - 014b00ed-1e6c-4ae8-b692-d016d3f26cd9
+
+_CopyFilesMarkedCopyLocal:
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\com.unity.ide.rider\3.0.0\JetBrains.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\JetBrains.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.WebGL.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Html5.17.9.0\lib\net40\Bridge.Html5.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.Html5.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Core.17.9.42-luna\lib\net40\Bridge.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\DOTween.1.2.705\lib\net40\DOTween.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\DOTween.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.es5.2.8.6733\lib\net40\Retyped.es5.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.es5.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.Core.1.6.6733\lib\net40\Retyped.Core.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.Core.dll".
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.scripthost.2.8.6733\lib\net40\Retyped.scripthost.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.scripthost.dll".
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.dom.2.8.6733\lib\net40\Retyped.dom.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.dom.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\com.unity.textmeshpro\3.0.6\TextMeshPro.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\TextMeshPro.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Vendor\UnityEngine.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityEngine.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\com.unity.ui\1.2.1\UnityEngine.UI.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityEngine.UI.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\com.unity.urp\7.6\UnityEngine.UniversalRenderPipeline.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityEngine.UniversalRenderPipeline.dll".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Core.17.9.42-luna\lib\net40\Bridge.xml" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.xml".
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Html5.17.9.0\lib\net40\Bridge.Html5.xml" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.Html5.xml".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.xml" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.WebGL.xml".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.xml" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.xml".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.Core.1.6.6733\lib\net40\Retyped.Core.xml" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.Core.xml".
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.dom.2.8.6733\lib\net40\Retyped.dom.xml" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.dom.xml".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.es5.2.8.6733\lib\net40\Retyped.es5.xml" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.es5.xml".
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\packages\Retyped.scripthost.2.8.6733\lib\net40\Retyped.scripthost.xml" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.scripthost.xml".
+
+  Creating "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\obj\Debug\Scripts.csproj.CopyComplete" because "AlwaysCreate" was specified.
+
+CopyFilesToOutputDirectory:
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\obj\Debug\UnityScriptsCompiler.dll" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityScriptsCompiler.dll".
+
+  Scripts -> C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityScriptsCompiler.dll
+
+  Copying file from "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\obj\Debug\UnityScriptsCompiler.pdb" to "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityScriptsCompiler.pdb".
+
+BridgeNetCompilerTask:
+  Bridge started
+
+      To enable detailed logging, configure "logging" in bridge.json.
+      https://github.com/bridgedotnet/Bridge/wiki/global-configuration#logging
+
+  Bridge done
+
+Done Building Project "C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj" (Rebuild target(s)).
+
+
+Build succeeded.
+
+
+
+"C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj" (Rebuild target) (1) ->
+(CoreCompile target) -> 
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(26,45): warning CS0649: Field 'SpawnManager.column0' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(36,40): warning CS0649: Field 'SpawnManager.guestParent' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(49,52): warning CS0649: Field 'SpawnManager.guestColors1' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(45,46): warning CS0649: Field 'SpawnManager.guestSpawnPositions' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(27,45): warning CS0649: Field 'SpawnManager.column1' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(17,36): warning CS0649: Field 'SpawnManager.spawnY' is never assigned to, and will always have its default value 0 [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Controllers\CarController.cs(22,43): warning CS0649: Field 'CarController.carHoodMeshRenderer' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(18,40): warning CS0649: Field 'SpawnManager.carParent' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\AudioManager.cs(14,46): warning CS0649: Field 'AudioManager.musicA' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\SEPManager.cs(13,16): warning CS0649: Field 'SEPManager.awakeEvents' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(8,41): warning CS0649: Field 'SpawnManager.car4Prefab' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(28,45): warning CS0649: Field 'SpawnManager.column2' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\SEPManager.cs(15,16): warning CS0649: Field 'SEPManager.startEvents' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(48,52): warning CS0649: Field 'SpawnManager.guestColors0' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Path\GuestPath.cs(8,42): warning CS0649: Field 'GuestPath.waypoints' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(51,52): warning CS0649: Field 'SpawnManager.guestColors3' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\TutorialManager.cs(11,39): warning CS0649: Field 'TutorialManager.tutorialObjects' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(29,45): warning CS0649: Field 'SpawnManager.column3' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(15,36): warning CS0649: Field 'SpawnManager.firstLineZ' is never assigned to, and will always have its default value 0 [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Controllers\GuestController.cs(9,50): warning CS0649: Field 'GuestController.meshRendererBody' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(9,41): warning CS0649: Field 'SpawnManager.car6Prefab' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Controllers\CarController.cs(21,43): warning CS0649: Field 'CarController.carBodyMeshRenderer' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\AudioManager.cs(15,46): warning CS0649: Field 'AudioManager.musicB' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(30,45): warning CS0649: Field 'SpawnManager.column4' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(35,41): warning CS0649: Field 'SpawnManager.guestPrefab' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(50,52): warning CS0649: Field 'SpawnManager.guestColors2' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\00GAME\Scripts\Managers\SpawnManager.cs(10,41): warning CS0649: Field 'SpawnManager.car10Prefab' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  C:\Workspace\Unity\iKame Technical Test Bus Away\LunaTemp\stage3\processed-scripts\Assets\DAT SDK\Core\System\TutorialManager.cs(16,31): warning CS0649: Field 'TutorialManager.highlightMaterial' is never assigned to, and will always have its default value null [C:\Workspace\Luna\7.2.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
+    28 Warning(s)
+    0 Error(s)
+
+
+Time Elapsed 00:00:17.25
+
+Source code compiled successfully!
+∩╗┐
+[ error ] $∩╗┐
+PHC: LP error code not found in JSON: 3015, JSON file might be outdated. Error message: Sequence contains no matching element
+
+Diagnostics gathered successfully
+report@code:build 31097.56
+report@diagnostics:verify 1.00
+report@diagnostics:upload 1981.45
+report@code:stage 17942.61
+[ Stage3 ] Code compiled and bundled successfully.
+report@code:bundle 51682.43
+report@package:stage 2492.45
+[ Stage4 ] Target platform: develop
+[ Stage4 ] Package bundled successfully
+report@assets:stats 0.66

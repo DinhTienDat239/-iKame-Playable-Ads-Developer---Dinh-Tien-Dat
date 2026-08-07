@@ -1,0 +1,1 @@
+namespace DAT.Core.DesignPatterns {}

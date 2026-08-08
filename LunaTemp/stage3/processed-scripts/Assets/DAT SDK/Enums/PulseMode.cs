@@ -1,1 +1,9 @@
-namespace DAT.Core.Enums {}
+namespace DAT.Core.Enums
+{
+    public enum PulseMode
+    {
+        PulseIn,
+        PulseOut,
+        PulseInThenOut
+    }
+}

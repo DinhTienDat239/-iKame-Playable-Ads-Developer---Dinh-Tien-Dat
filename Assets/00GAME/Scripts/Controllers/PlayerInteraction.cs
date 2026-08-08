@@ -19,6 +19,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             return;
         }
+        if(GameManager.Instance.isWin || GameManager.Instance.isLose || GameManager.Instance.moveCount >= GameManager.Instance.moveLimit){
+            Luna.Unity.Playable.InstallFullGame();
+            Luna.Unity.LifeCycle.GameEnded();
+        }
 
         if (raycastCamera == null)
         {

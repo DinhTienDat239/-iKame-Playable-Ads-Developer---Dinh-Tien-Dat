@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using DAT.Managers;
 
 public class GuestController : MonoBehaviour
 {
@@ -25,6 +26,24 @@ public class GuestController : MonoBehaviour
         meshRendererBody.sharedMaterial = mat;
     }
 
+    public void SetQueueVisible(bool visible)
+    {
+        if (meshRendererBody != null)
+        {
+            meshRendererBody.gameObject.SetActive(visible);
+        }
+
+        SetAnimatorActive(visible);
+    }
+
+    private void SetAnimatorActive(bool active)
+    {
+        if (animator != null)
+        {
+            animator.enabled = active;
+        }
+    }
+
     public void JumpToSeat(Transform seat, TweenCallback onComplete)
     {
         if (seat == null)
@@ -39,6 +58,7 @@ public class GuestController : MonoBehaviour
         jumpCompleteCallback = onComplete;
         pendingSeat = seat;
         isOnCar = true;
+        SetAnimatorActive(true);
 
         if (jumpTween != null)
         {
@@ -49,6 +69,10 @@ public class GuestController : MonoBehaviour
             .DOJump(seat.position, jumpPower, 1, jumpDuration)
             .SetEase(Ease.OutQuad)
             .OnComplete(OnJumpToSeatComplete);
+        
+        DOTween.Sequence()
+            .AppendInterval(0.03f)
+            .AppendCallback(() => AudioManager.Instance.PlaySFX(GameManager.Instance.carHopInSound));
     }
 
     private Transform pendingSeat;
@@ -63,7 +87,6 @@ public class GuestController : MonoBehaviour
             transform.localRotation = Quaternion.identity;
             transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
         }
-
         SetSit(true);
 
         if (jumpCompleteCallback != null)

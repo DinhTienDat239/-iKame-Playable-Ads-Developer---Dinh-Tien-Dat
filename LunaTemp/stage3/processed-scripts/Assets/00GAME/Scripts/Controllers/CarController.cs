@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using DAT.Managers;
 
 public class CarController : MonoBehaviour
 {
@@ -18,19 +19,25 @@ public class CarController : MonoBehaviour
     [SerializeField] private float pathLookAhead = 0.08f;
     [SerializeField] private float parkRotationY = -150f;
     [SerializeField] private float parkApproachDistance = 2f;
+    [SerializeField] private float reverseSpeedMultiplier = 0.5f;
     [SerializeField] private float exitOffsetX = -10f;
     [SerializeField] private float fullExitSpeedMultiplier = 1.5f;
+    [SerializeField] [Range(0f, 1f)] private float fullExitBoostSegmentT = 0.15f;
     [SerializeField] private float boostBodyTiltX = -7f;
     [SerializeField] private float boostBodyTiltDuration = 0.15f;
     [SerializeField] private float parkBrakeTiltX = 10f;
     [SerializeField] private float parkBrakeTiltInDuration = 0.12f;
     [SerializeField] private float parkBrakeTiltOutDuration = 0.28f;
+    [SerializeField] private float laneBlockedSwayZ = 3f;
+    [SerializeField] private float laneBlockedSwayStepDuration = 0.06f;
     [SerializeField] private float turnSwayMaxZ = 7f;
     [SerializeField] private float turnSwayFactor = 0.045f;
     [SerializeField] private float turnSwayReturnSpeed = 10f;
 
     [Header("Collision Avoidance")]
     [SerializeField] private float collisionCheckDistance = 3f;
+    [SerializeField] private float aheadCollisionResumeDelay = 0.25f;
+    [SerializeField] private float reverseCollisionStopDuration = 0.05f;
 
     [Header("Hood")]
     [SerializeField] private float hoodCloseDuration = 0.25f;
@@ -44,6 +51,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private MeshRenderer carBodyMeshRenderer;
     [SerializeField] private MeshRenderer carHoodMeshRenderer;
     [SerializeField] private GameObject carBody;
+    [SerializeField] private GameObject carSmokeFX;
 
     public bool isMoving;
     public int currentPassengerCount;
@@ -63,6 +71,11 @@ public class CarController : MonoBehaviour
     private GuestSpawnPos pendingPickupSpawnPos;
     public bool _isBlockedByAhead;
     private float _blockedTargetSpeed;
+    private bool _isWaitingCollisionResume;
+    private Tween _collisionResumeDelayTween;
+    private bool _skipAheadCollision;
+    private bool _isOccupyingParkingLaneSegment;
+    private bool _isDepartingCarLineBeforePathPoint1;
     public bool _isReversing;
     private TweenCallback _pendingReverseCallback;
     public bool isOutOfCarLine = false;
@@ -78,6 +91,7 @@ public class CarController : MonoBehaviour
     private bool carBodyRestCached;
     private float bodyPitchX;
     private float bodySwayZ;
+    private float bodyBlockedSwayZ;
     private float previousTurnYaw;
     private bool turnYawInitialized;
 
@@ -89,12 +103,58 @@ public class CarController : MonoBehaviour
     private void Update()
     {
         UpdateCarBodyTurnSway();
+        TryClearDepartingCarLineFlagByX();
 
-        if (isMoving && isOutOfCarLine)
+        if (isMoving && isOutOfCarLine && !_skipAheadCollision)
         {
             CheckAheadCollision();
         }
     }
+
+    private void TryClearDepartingCarLineFlagByX()
+    {
+        if (!_isDepartingCarLineBeforePathPoint1)
+        {
+            return;
+        }
+
+        SpawnManager spawnManager = null;
+        if (GameManager.Instance != null)
+        {
+            spawnManager = GameManager.Instance.spawnManager;
+        }
+
+        if (spawnManager == null)
+        {
+            return;
+        }
+
+        float rightmostColumnX = spawnManager.GetRightmostCarLineColumnX();
+        if (transform.position.x >= rightmostColumnX)
+        {
+            _isDepartingCarLineBeforePathPoint1 = false;
+        }
+    }
+
+    private void ClearAheadCollisionState()
+    {
+        CancelCollisionResumeDelay();
+
+        if (!_isBlockedByAhead)
+        {
+            return;
+        }
+
+        _isBlockedByAhead = false;
+        _blockedTargetSpeed = 0f;
+
+        if (isMoving)
+        {
+            SetActiveMoveSpeed(moveSpeed);
+        }
+    }
+
+    private const float CollisionRaySideOffset = 0.5f;
 
     private void CheckAheadCollision()
     {
@@ -111,9 +171,90 @@ public class CarController : MonoBehaviour
 
         dir.Normalize();
 
-        float backwardOffset = 0.8f;
-        Vector3 rayOrigin = transform.position - dir * backwardOffset;
+        float backwardOffset = 0.3f;
+        Vector3 centerOrigin = transform.position - dir * backwardOffset;
         float totalRayDistance = collisionCheckDistance + backwardOffset;
+
+        bool isBlocked = false;
+        float blockedSpeed = 0f;
+
+        if (TryDetectAheadCar(centerOrigin + transform.right * -CollisionRaySideOffset, dir, totalRayDistance, out blockedSpeed))
+        {
+            isBlocked = true;
+        }
+        else if (TryDetectAheadCar(centerOrigin + transform.right * CollisionRaySideOffset, dir, totalRayDistance, out blockedSpeed))
+        {
+            isBlocked = true;
+        }
+
+        if (isBlocked)
+        {
+            CancelCollisionResumeDelay();
+
+            if (!_isBlockedByAhead || !Mathf.Approximately(_blockedTargetSpeed, blockedSpeed))
+            {
+                _isBlockedByAhead = true;
+                _blockedTargetSpeed = blockedSpeed;
+
+                if (_isReversing)
+                {
+                    ApplyMoveSpeedTween(blockedSpeed, Ease.InOutSine, reverseCollisionStopDuration);
+                }
+                else
+                {
+                    SetActiveMoveSpeed(blockedSpeed);
+                }
+            }
+            return;
+        }
+
+        if (_isBlockedByAhead)
+        {
+            _isBlockedByAhead = false;
+            _blockedTargetSpeed = 0f;
+            StartCollisionResumeDelay();
+        }
+    }
+
+    private void StartCollisionResumeDelay()
+    {
+        if (_isWaitingCollisionResume)
+        {
+            return;
+        }
+
+        SetActiveMoveSpeed(0f);
+        _isWaitingCollisionResume = true;
+        KillCollisionResumeDelayTween();
+
+        _collisionResumeDelayTween = DOVirtual.DelayedCall(aheadCollisionResumeDelay, OnCollisionResumeDelayComplete);
+    }
+
+    private void OnCollisionResumeDelayComplete()
+    {
+        _collisionResumeDelayTween = null;
+        _isWaitingCollisionResume = false;
+        ApplyMoveSpeedTween(moveSpeed, Ease.InOutSine, speedTransitionDuration * 2f);
+    }
+
+    private void CancelCollisionResumeDelay()
+    {
+        _isWaitingCollisionResume = false;
+        KillCollisionResumeDelayTween();
+    }
+
+    private void KillCollisionResumeDelayTween()
+    {
+        if (_collisionResumeDelayTween != null)
+        {
+            _collisionResumeDelayTween.Kill();
+            _collisionResumeDelayTween = null;
+        }
+    }
+
+    private bool TryDetectAheadCar([Bridge.Ref] Vector3 rayOrigin, [Bridge.Ref] Vector3 dir, float totalRayDistance, out float blockedSpeed)
+    {
+        blockedSpeed = 0f;
 
         RaycastHit hitInfo;
         bool isHit = Physics.Raycast(
@@ -135,38 +276,23 @@ public class CarController : MonoBehaviour
         }
 #endif
 
-        if (isHit)
+        if (!isHit)
         {
-            CarController ahead = hitInfo.collider.GetComponentInParent<CarController>();
-            if (ahead != null && ahead != this && !ahead.isParked && !ahead._isReversing)
-            {
-                float targetSpeed;
-                if (ahead.isPickingUp)
-                {
-                    targetSpeed = guestPickupSpeed;
-                }
-                else
-                {
-                    targetSpeed = 0f;
-                }
-
-                // Chỉ apply khi lần đầu bị chặn, hoặc target speed thay đổi
-                if (!_isBlockedByAhead || !Mathf.Approximately(_blockedTargetSpeed, targetSpeed))
-                {
-                    _isBlockedByAhead = true;
-                    _blockedTargetSpeed = targetSpeed;
-                    SetActiveMoveSpeed(targetSpeed);
-                }
-                return;
-            }
+            return false;
         }
 
-        if (_isBlockedByAhead)
+        CarController ahead = hitInfo.collider.GetComponentInParent<CarController>();
+        if (ahead == null || ahead == this || ahead.isParked || ahead._isReversing)
         {
-            _isBlockedByAhead = false;
-            _blockedTargetSpeed = 0f;
-            SetActiveMoveSpeed(moveSpeed);
+            return false;
         }
+
+        if (ahead.isPickingUp)
+        {
+            blockedSpeed = guestPickupSpeed;
+        }
+
+        return true;
     }
 
     public void Init()
@@ -191,6 +317,33 @@ public class CarController : MonoBehaviour
         isHoodClosed = true;
         currentPassengerCount = 0;
         activeMoveSpeed = moveSpeed;
+        isOutOfCarLine = false;
+        _isOccupyingParkingLaneSegment = false;
+        _isDepartingCarLineBeforePathPoint1 = false;
+    }
+
+    public bool IsOccupyingParkingLaneSegment()
+    {
+        return _isOccupyingParkingLaneSegment;
+    }
+
+    public bool IsDepartingCarLineBeforeParkingPathPoint1()
+    {
+        return _isDepartingCarLineBeforePathPoint1;
+    }
+
+    public void SetCarBodyVisible(bool visible)
+    {
+        if (carBody != null)
+        {
+            carBody.SetActive(visible);
+            return;
+        }
+
+        if (carBodyMeshRenderer != null)
+        {
+            carBodyMeshRenderer.gameObject.SetActive(visible);
+        }
     }
 
     private void SetHoodActive(bool active)
@@ -227,7 +380,8 @@ public class CarController : MonoBehaviour
 
         Transform hood = carHoodMeshRenderer.transform;
         hood.gameObject.SetActive(true);
-
+        VFXManager.Instance.SpawnCarDoneVFX(transform.position);
+        AudioManager.Instance.PlaySFX(GameManager.Instance.carDoneSound);
         Vector3 startPos = hoodRestLocalPos;
         startPos.y = hoodRestLocalPos.y + hoodCloseDropOffset;
         hood.localPosition = startPos;
@@ -359,6 +513,23 @@ public class CarController : MonoBehaviour
 
     private void SetActiveMoveSpeed(float speed)
     {
+        ApplyMoveSpeedTween(speed, Ease.InOutSine, speedTransitionDuration);
+    }
+
+    private void BeginAcceleratedMove(float targetSpeed)
+    {
+        activeMoveSpeed = 0f;
+        ApplyTweenSpeed();
+        ApplyMoveSpeedTween(targetSpeed, Ease.InQuad, speedTransitionDuration);
+    }
+
+    private void ApplyMoveSpeedTween(float speed, Ease ease)
+    {
+        ApplyMoveSpeedTween(speed, ease, speedTransitionDuration);
+    }
+
+    private void ApplyMoveSpeedTween(float speed, Ease ease, float transitionDuration)
+    {
         if (Mathf.Approximately(activeMoveSpeed, speed))
         {
             return;
@@ -368,15 +539,15 @@ public class CarController : MonoBehaviour
         speedTweenStart = activeMoveSpeed;
         speedTweenTarget = speed;
 
-        if (speedTransitionDuration <= 0f)
+        if (transitionDuration <= 0f)
         {
             activeMoveSpeed = speed;
             ApplyTweenSpeed();
             return;
         }
 
-        speedTween = DOVirtual.Float(0f, 1f, speedTransitionDuration, OnSpeedTweenUpdate)
-            .SetEase(Ease.InOutSine)
+        speedTween = DOVirtual.Float(0f, 1f, transitionDuration, OnSpeedTweenUpdate)
+            .SetEase(ease)
             .OnComplete(OnSpeedTweenComplete);
     }
 
@@ -422,15 +593,22 @@ public class CarController : MonoBehaviour
             return;
         }
 
-        isOutOfCarLine = true;
+        isOutOfCarLine = false;
         assignedSlot = slot;
         if (slot != null)
         {
             slot.isParked = true;
+            _isDepartingCarLineBeforePathPoint1 = false;
+        }
+        else
+        {
+            _isDepartingCarLineBeforePathPoint1 = true;
         }
 
         parkingPath = path;
         goInLineStep = 0;
+        _skipAheadCollision = false;
+        _isOccupyingParkingLaneSegment = false;
         isMoving = true;
         RunGoInLineStep();
     }
@@ -465,6 +643,8 @@ public class CarController : MonoBehaviour
 
         parkingPath = path;
         fromParkingStep = 0;
+        _skipAheadCollision = false;
+        _isOccupyingParkingLaneSegment = false;
         isMoving = true;
         RunFromParkingStep();
     }
@@ -481,20 +661,35 @@ public class CarController : MonoBehaviour
 
     public void MoveInQueue([Bridge.Ref] Vector3 target)
     {
+        MoveInQueue(target, false);
+    }
+
+    public void MoveInQueue([Bridge.Ref] Vector3 target, bool setFirstLineOnComplete)
+    {
         isMoving = true;
+        isFirstLine = false;
+        queueSetFirstLineOnComplete = setFirstLineOnComplete;
         KillMoveTween();
-        activeMoveSpeed = moveSpeed;
 
         moveTween = transform
-            .DOMove(target, activeMoveSpeed)
+            .DOMove(target, moveSpeed)
             .SetSpeedBased()
             .SetEase(Ease.Linear)
             .OnComplete(OnQueueMoveComplete);
+        BeginAcceleratedMove(moveSpeed);
     }
+
+    private bool queueSetFirstLineOnComplete;
 
     private void OnQueueMoveComplete()
     {
         isMoving = false;
+
+        if (queueSetFirstLineOnComplete)
+        {
+            isFirstLine = true;
+            queueSetFirstLineOnComplete = false;
+        }
     }
 
     private void RunGoInLineStep()
@@ -538,6 +733,9 @@ public class CarController : MonoBehaviour
         // 3: thang theo Z xuong toi Z cua path[1]
         if (goInLineStep == 3)
         {
+            _skipAheadCollision = true;
+            ClearAheadCollisionState();
+
             Vector3 downPos = transform.position;
             downPos.z = parkingPath[1].position.z;
 
@@ -554,6 +752,8 @@ public class CarController : MonoBehaviour
         // 4: toi diem tiep can tren truc goc park (giao voi lane path[1]->path[2])
         if (goInLineStep == 4)
         {
+            _isOccupyingParkingLaneSegment = true;
+
             Vector3 approachPoint = GetParkApproachPoint();
             MoveToPoint(approachPoint, AdvanceGoInLineStep);
             return;
@@ -570,6 +770,13 @@ public class CarController : MonoBehaviour
     private void OnReachParkingTurnPoint()
     {
         SetHoodActive(false);
+        isOutOfCarLine = true;
+
+        if (GameManager.Instance != null && GameManager.Instance.carLineManager != null)
+        {
+            GameManager.Instance.carLineManager.OnDepartedCarReachedTurnPoint(this);
+        }
+
         AdvanceGoInLineStep();
     }
 
@@ -642,7 +849,7 @@ public class CarController : MonoBehaviour
             return true;
         }
 
-        ParkingSlotController freeSlot = parkingSlotManager.GetFreeSlot();
+        ParkingSlotController freeSlot = parkingSlotManager.ReserveFreeSlot();
         if (freeSlot == null)
         {
             HandleParkingFail();
@@ -650,7 +857,6 @@ public class CarController : MonoBehaviour
         }
 
         assignedSlot = freeSlot;
-        freeSlot.isParked = true;
         return true;
     }
 
@@ -704,15 +910,14 @@ public class CarController : MonoBehaviour
 
         fullExitSpeedBoostApplied = false;
         KillMoveTween();
-        activeMoveSpeed = moveSpeed;
         moveTween = transform
-            .DOPath(route, activeMoveSpeed, PathType.CatmullRom, PathMode.Full3D, 20)
+            .DOPath(route, moveSpeed, PathType.CatmullRom, PathMode.Full3D, 20)
             .SetSpeedBased()
             .SetEase(Ease.Linear)
             .SetLookAt(pathLookAhead)
             .OnUpdate(CheckFullExitSpeedBoost)
             .OnComplete(onComplete);
-        ApplyTweenSpeed();
+        BeginAcceleratedMove(moveSpeed);
     }
 
     private void CheckFullExitSpeedBoost()
@@ -726,7 +931,10 @@ public class CarController : MonoBehaviour
         {
             return;
         }
-
+        carSmokeFX.SetActive(true);
+        carSmokeFX.transform.localScale = Vector3.zero;
+        carSmokeFX.transform.DOScale(0.1f, 0.25f).SetEase(Ease.OutBack);
+        GameManager.Instance.barrierController.OpenBarrier();
         fullExitSpeedBoostApplied = true;
         SetActiveMoveSpeed(moveSpeed * fullExitSpeedMultiplier);
         PlayCarBodyBoostTilt();
@@ -762,6 +970,35 @@ public class CarController : MonoBehaviour
             DOVirtual.Float(parkBrakeTiltX, 0f, parkBrakeTiltOutDuration, OnBodyPitchUpdate)
                 .SetEase(Ease.OutBack));
         carBodyTiltTween = brakeSequence;
+    }
+
+    public void PlayParkingLaneBlockedSway()
+    {
+        if (GetCarBodyTransform() == null)
+        {
+            return;
+        }
+
+        KillCarBodyTiltTween();
+        bodyBlockedSwayZ = 0f;
+
+        Sequence swaySequence = DOTween.Sequence();
+        swaySequence.Append(
+            DOVirtual.Float(0f, laneBlockedSwayZ, laneBlockedSwayStepDuration, OnBodyBlockedSwayUpdate)
+                .SetEase(Ease.OutQuad));
+        swaySequence.Append(
+            DOVirtual.Float(laneBlockedSwayZ, -laneBlockedSwayZ, laneBlockedSwayStepDuration * 2f, OnBodyBlockedSwayUpdate)
+                .SetEase(Ease.InOutSine));
+        swaySequence.Append(
+            DOVirtual.Float(-laneBlockedSwayZ, 0f, laneBlockedSwayStepDuration, OnBodyBlockedSwayUpdate)
+                .SetEase(Ease.OutQuad));
+        carBodyTiltTween = swaySequence;
+    }
+
+    private void OnBodyBlockedSwayUpdate(float swayZ)
+    {
+        bodyBlockedSwayZ = swayZ;
+        ApplyCarBodyLocalRotation();
     }
 
     private void OnBodyPitchUpdate(float pitchX)
@@ -819,7 +1056,7 @@ public class CarController : MonoBehaviour
 
         Vector3 euler = carBodyRestLocalEuler;
         euler.x = euler.x + bodyPitchX;
-        euler.z = euler.z + bodySwayZ;
+        euler.z = euler.z + bodySwayZ + bodyBlockedSwayZ;
         body.localEulerAngles = euler;
     }
 
@@ -830,6 +1067,8 @@ public class CarController : MonoBehaviour
             carBodyTiltTween.Kill();
             carBodyTiltTween = null;
         }
+
+        bodyBlockedSwayZ = 0f;
     }
 
     private Transform GetCarBodyTransform()
@@ -879,7 +1118,7 @@ public class CarController : MonoBehaviour
         Vector3 toCar = transform.position - point2;
         toCar.y = 0f;
         float t = Vector3.Dot(toCar, segment) / segmentSqr;
-        return t >= 0.333f;
+        return t >= fullExitBoostSegmentT;
     }
 
     private void OnCarExitFull()
@@ -897,6 +1136,10 @@ public class CarController : MonoBehaviour
         }
 
         isMoving = false;
+        _skipAheadCollision = false;
+        _isOccupyingParkingLaneSegment = false;
+        _isDepartingCarLineBeforePathPoint1 = false;
+        ClearAheadCollisionState();
         Destroy(gameObject);
     }
 
@@ -911,6 +1154,7 @@ public class CarController : MonoBehaviour
         // 0: lui ra path (toi approach point), giu goc park
         if (fromParkingStep == 0)
         {
+            _isOccupyingParkingLaneSegment = true;
             MoveToPointReverse(GetParkApproachPoint(), AdvanceFromParkingStep);
             return;
         }
@@ -925,6 +1169,7 @@ public class CarController : MonoBehaviour
         // 2: GoForGuest 1 luot
         if (fromParkingStep == 2)
         {
+            _isOccupyingParkingLaneSegment = false;
             PlayGuestPath(OnFromParkingGuestPathComplete);
             return;
         }
@@ -932,6 +1177,9 @@ public class CarController : MonoBehaviour
         // 3: thang Z xuong toi Z path[1]
         if (fromParkingStep == 3)
         {
+            _skipAheadCollision = true;
+            ClearAheadCollisionState();
+
             Vector3 downPos = transform.position;
             downPos.z = parkingPath[1].position.z;
 
@@ -972,6 +1220,9 @@ public class CarController : MonoBehaviour
         isParked = true;
         isMoving = false;
         isFirstLine = false;
+        _skipAheadCollision = false;
+        _isOccupyingParkingLaneSegment = false;
+        ClearAheadCollisionState();
         PlayCarBodyParkBrakeTilt();
 
         if (GameManager.Instance != null)
@@ -999,11 +1250,11 @@ public class CarController : MonoBehaviour
         _pendingReverseCallback = onComplete;
 
         moveTween = transform
-            .DOMove(target, activeMoveSpeed)
+            .DOMove(target, moveSpeed)
             .SetSpeedBased()
             .SetEase(Ease.Linear)
             .OnComplete(OnMoveReverseComplete);
-        ApplyTweenSpeed();
+        BeginAcceleratedMove(moveSpeed * reverseSpeedMultiplier);
     }
 
     private void OnMoveReverseComplete()
@@ -1053,14 +1304,13 @@ public class CarController : MonoBehaviour
         }
 
         KillMoveTween();
-        activeMoveSpeed = moveSpeed;
         moveTween = transform
-            .DOPath(route, activeMoveSpeed, PathType.CatmullRom, PathMode.Full3D, 20)
+            .DOPath(route, moveSpeed, PathType.CatmullRom, PathMode.Full3D, 20)
             .SetSpeedBased()
             .SetEase(Ease.Linear)
             .SetLookAt(pathLookAhead)
             .OnComplete(onComplete);
-        ApplyTweenSpeed();
+        BeginAcceleratedMove(moveSpeed);
     }
 
     private void MoveToPoint([Bridge.Ref] Vector3 target, TweenCallback onComplete)
@@ -1069,12 +1319,12 @@ public class CarController : MonoBehaviour
         KillMoveTween();
 
         moveTween = transform
-            .DOMove(target, activeMoveSpeed)
+            .DOMove(target, moveSpeed)
             .SetSpeedBased()
             .SetEase(Ease.Linear)
             .OnUpdate(SmoothLookAtCurrentTarget)
             .OnComplete(onComplete);
-        ApplyTweenSpeed();
+        BeginAcceleratedMove(moveSpeed);
     }
 
     private void SmoothLookAtCurrentTarget()
@@ -1240,8 +1490,14 @@ public class CarController : MonoBehaviour
         KillCarBodyTiltTween();
         bodyPitchX = 0f;
         bodySwayZ = 0f;
+        bodyBlockedSwayZ = 0f;
         isMoving = false;
         _isBlockedByAhead = false;
+        _isWaitingCollisionResume = false;
+        _skipAheadCollision = false;
+        _isOccupyingParkingLaneSegment = false;
+        _isDepartingCarLineBeforePathPoint1 = false;
+        KillCollisionResumeDelayTween();
         _isReversing = false;
         _pendingReverseCallback = null;
     }

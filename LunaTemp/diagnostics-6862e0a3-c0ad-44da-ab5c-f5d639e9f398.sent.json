@@ -1,0 +1,202 @@
+{
+    "BuildID": "6862e0a3-c0ad-44da-ab5c-f5d639e9f398",
+    "Command": "project:deploy",
+    "ProjectID": "cbfe3c40de136434a969a42bad174c40",
+    "ProjectStateHash": "08140cc03e8f990789a73d0d306ad01629a5a806c443cf0147ba047529108ae0",
+    "StageCompletedAt": 3,
+    "EarliestFatalError": 0,
+    "StartTime": 1786200909671,
+    "EndTime": 1786200992760,
+    "PlaygroundUserID": 26243,
+    "OperatingSystem": "win32",
+    "UnityPackageID": null,
+    "TargetPlatform": "playground",
+    "UnityVersion": "6000.0.66f2",
+    "LunaVersion": "7.2.0",
+    "LogCount": 8,
+    "Logs": [
+        {
+            "LogID": "1b7b737c-7abd-4556-9d9d-72486c68aa52",
+            "Order": 6,
+            "Timestamp": 1786200993688,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3005",
+            "Description": "You are using a Luna reserved keyword: Tag",
+            "Details": [
+                "You are using a reserved keyword: Tag for Luna. Please change the name of the field/class"
+            ],
+            "DescriptionValues": [
+                "Tag"
+            ],
+            "DetailsValues": [
+                "Tag"
+            ],
+            "LogCount": 1,
+            "LinePosition": 273,
+            "FilePath": "C:\\Workspace\\Unity\\iKame Technical Test Bus Away\\Assets\\DAT SDK\\FX\\UI FX\\UITypingEffect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "40092605-a93c-4748-989d-702ce9603644",
+            "Order": 6,
+            "Timestamp": 1786200993761,
+            "Stage": 3,
+            "ErrorType": 3,
+            "ErrorCode": "LP3007",
+            "Description": "You are not using any custom events",
+            "Details": [
+                "You are not using any custom events. It is recommended to use custom events to have a better understanding of the playable."
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": null,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "8074adc2-97ef-4ae8-8fac-291e3d4888ca",
+            "Order": 6,
+            "Timestamp": 1786200993761,
+            "Stage": 3,
+            "ErrorType": 3,
+            "ErrorCode": "LP3011",
+            "Description": "You are not using any LunaPlaygroundFields attributes.",
+            "Details": [
+                "You are not using any LunaPlaygroundFields attributes, it allows you to configure your playable to different concepts to find the best variation, which can drastically improve playable performance on all ad networks."
+            ],
+            "DescriptionValues": null,
+            "DetailsValues": null,
+            "LogCount": 1,
+            "LinePosition": null,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "af762882-db83-4de3-b563-836c3768dbd8",
+            "Order": 0,
+            "Timestamp": 1786200935781,
+            "Stage": 1,
+            "ErrorType": 3,
+            "ErrorCode": "LP1040",
+            "Description": "URP ScreenSpaceAmbientOcclusion (SSAO) is active in URP UniversalRenderData.",
+            "Details": [
+                "The Unity Playworks Plugin doesn't directly support Unity's built-in SSAO. If you enable this effect in Unity, it will not appear in your final build. To use SSAO, you can enable it directly in Dev Environment or Creative Editor on Unity Playworks."
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "ScreenSpaceAmbientOcclusion"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "d5467595-6303-4419-a2eb-2adc1d3ac0b9",
+            "Order": 1,
+            "Timestamp": 1786200944020,
+            "Stage": 1,
+            "ErrorType": 2,
+            "ErrorCode": "LP1014",
+            "Description": "We recommend running Runtime Analysis to find and remove all unused code",
+            "Details": [
+                "Navigate to the Runtime Analysis → Code tab to enable code stripping. Before uploading the playable, please make sure to have played all scenario’s of the playable in a development build to make Runtime Analysis work properly."
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "f91d0136-45e0-4fbd-a6a7-defc52a7426b",
+            "Order": 2,
+            "Timestamp": 1786200944020,
+            "Stage": 1,
+            "ErrorType": 2,
+            "ErrorCode": "LP1016",
+            "Description": "Extensive usage of ParticleSystem Component",
+            "Details": [
+                "There is extensive usage of the ParticleSystem component.\nExcessive usage of any component can be detrimental to performance on lower and in some cases higher end devices, consider reducing the amount the component is used.\nRecommended count: 10, current count 47."
+            ],
+            "DescriptionValues": [
+                "ParticleSystem"
+            ],
+            "DetailsValues": [
+                "ParticleSystem",
+                "10",
+                "47"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "a6621847-e2db-4548-b187-d806b6c2b8d4",
+            "Order": 3,
+            "Timestamp": 1786200944021,
+            "Stage": 1,
+            "ErrorType": 2,
+            "ErrorCode": "LP1022",
+            "Description": "Extensive use of shader variants",
+            "Details": [
+                "Extensive usage of shader variants negatively affects playable startup time. Please consider them to be less than 20 (22 found). Check Runtime analysis -> shader tab to see used shaders."
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "20",
+                "22"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "4a086038-3688-431c-8c3d-ff57722de204",
+            "Order": 4,
+            "Timestamp": 1786200944044,
+            "Stage": 1,
+            "ErrorType": 0,
+            "ErrorCode": "LP1032",
+            "Description": "Package(s) is not supported in Luna",
+            "Details": [
+                "Currently package(s) com.unity.timeline are not supported in Luna. We recommend you to remove it and workaround it's functionality."
+            ],
+            "DescriptionValues": [
+                "com.unity.timeline (1.8.10)"
+            ],
+            "DetailsValues": [
+                "com.unity.timeline"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "C:/Workspace/Unity/iKame Technical Test Bus Away/Packages\\manifest.json",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        }
+    ]
+}

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GuestSpawnPos : MonoBehaviour
 {
+    private const int MaxVisibleGuestsPerRow = 10;
+
     [Header("References")]
     [SerializeField] public TextMeshProUGUI guestLeftDisplayTxt;
     [SerializeField] public Enums.GuestQueueType queueType = Enums.GuestQueueType.StraightUp;
@@ -52,6 +54,7 @@ public class GuestSpawnPos : MonoBehaviour
         }
 
         guestQueue.Add(guest);
+        RefreshGuestVisibility();
     }
 
     public GuestController GetFrontGuest()
@@ -111,7 +114,32 @@ public class GuestSpawnPos : MonoBehaviour
             Vector3 localOffset = spawnManager.GetGuestQueueLocalOffset(queueType, i);
             Vector3 worldPos = transform.TransformPoint(localOffset);
             Quaternion rotation = spawnManager.GetGuestQueueRotation(this, queueType);
-            guest.MoveToQueueSlot(worldPos, rotation);
+
+            bool visible = i < MaxVisibleGuestsPerRow;
+            guest.SetQueueVisible(visible);
+
+            if (visible)
+            {
+                guest.MoveToQueueSlot(worldPos, rotation);
+            }
+            else
+            {
+                guest.transform.SetPositionAndRotation(worldPos, rotation);
+            }
+        }
+    }
+
+    private void RefreshGuestVisibility()
+    {
+        for (int i = 0; i < guestQueue.Count; i++)
+        {
+            GuestController guest = guestQueue[i];
+            if (guest == null || guest.isOnCar)
+            {
+                continue;
+            }
+
+            guest.SetQueueVisible(i < MaxVisibleGuestsPerRow);
         }
     }
 

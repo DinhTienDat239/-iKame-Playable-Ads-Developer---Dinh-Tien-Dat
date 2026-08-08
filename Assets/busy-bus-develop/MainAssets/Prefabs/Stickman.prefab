@@ -111,7 +111,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: de73496c75ead8145b7b127f9489a385, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   jumpDuration: 0.1
   queueMoveDuration: 0.05
   meshRendererBody: {fileID: 4925439012195720666}
-  animator: {fileID: 0}
+  animator: {fileID: 8160758401337877146}
   isOnCar: 0
 --- !u!1 &3012682099002131847
 GameObject:

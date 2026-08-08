@@ -5,3 +5,10 @@ PrefabImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 200333
+  packageName: Hyper Casual FX
+  packageVersion: 1.0.1
+  assetPath: Assets/DAT SDK/FX/Particle System/Prefabs/Area/Area_heal_green.prefab
+  uploadId: 475766

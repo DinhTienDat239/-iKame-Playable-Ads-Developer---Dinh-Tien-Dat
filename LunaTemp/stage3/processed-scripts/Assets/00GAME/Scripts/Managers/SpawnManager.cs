@@ -57,6 +57,13 @@ public class SpawnManager : MonoBehaviour
         return firstLineZ;
     }
 
+    public float GetRightmostCarLineColumnX()
+    {
+        float centerOffset = (columnCount - 1) * 0.5f;
+        int rightmostColumn = columnCount - 1;
+        return (rightmostColumn - centerOffset) * columnSpacing;
+    }
+
     public float GetSafeDistanceForType(Enums.CarType carType)
     {
         return GetSafeDistance(carType);
@@ -248,6 +255,44 @@ public class SpawnManager : MonoBehaviour
                 guestSpawnPositions[i].ResetCarTrigger(car);
             }
         }
+    }
+
+    public bool IsAnyCarOccupyingParkingLaneSegment()
+    {
+        if (carParent == null)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < carParent.childCount; i++)
+        {
+            CarController car = carParent.GetChild(i).GetComponent<CarController>();
+            if (car != null && car.IsOccupyingParkingLaneSegment())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool IsAnyCarDepartingCarLineBeforeParkingPathPoint1()
+    {
+        if (carParent == null)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < carParent.childCount; i++)
+        {
+            CarController car = carParent.GetChild(i).GetComponent<CarController>();
+            if (car != null && car.IsDepartingCarLineBeforeParkingPathPoint1())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public bool AreAllGuestSpawnPosEmpty()

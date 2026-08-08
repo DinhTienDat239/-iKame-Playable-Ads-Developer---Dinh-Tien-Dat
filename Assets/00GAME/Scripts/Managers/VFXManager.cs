@@ -1,16 +1,12 @@
+using DAT.Core.DesignPatterns;
 using UnityEngine;
 
-public class VFXManager : MonoBehaviour
+public class VFXManager : Singleton<VFXManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("VFX")]
+    [SerializeField] private GameObject vfxCarDone;
+    public void SpawnCarDoneVFX(Vector3 position)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Instantiate(vfxCarDone, position, Quaternion.identity);
     }
 }
